@@ -16,7 +16,7 @@ class Graph {
     return this.adjacencyList.get(vertex) ?? [];
   }
 
-  // Deep-First Search
+  // Depth-First Search
   dfs(start: string): string[] {
     const result: string[] = [];
     const visited = new Set<string>();
@@ -106,7 +106,7 @@ class Graph {
 
     while (cur != null) {
       path.push(cur);
-      cur = previous.get(cur)
+      cur = previous.get(cur);
     }
 
     return path.reverse();

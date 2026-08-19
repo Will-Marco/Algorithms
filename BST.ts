@@ -7,10 +7,10 @@ class TreeNode<T> {
   }
 }
 
-class BTS {
-  root: TreeNode<number> | null = null;
+class BST {
+  private root: TreeNode<number> | null = null;
 
-  // O(log n) muvozanatli daraxtda
+  // O(log n) balanced tree, O(n) eng yomon holatda (skewed tree)
   insert(value: number): void {
     const newNode = new TreeNode(value);
     if (this.root === null) {
@@ -38,7 +38,7 @@ class BTS {
     }
   }
 
-  // O(log n)
+  // O(log n)  balanced tree, O(n) eng yomon holatda
   search(value: number): boolean {
     let current = this.root;
 
@@ -51,7 +51,7 @@ class BTS {
     return false;
   }
 
-  // O(log n)
+  // O(log n)  balanced tree, O(n) eng yomon holatda
   findMin(): number | null {
     let current = this.root;
 
@@ -66,7 +66,7 @@ class BTS {
     return null;
   }
 
-  // O(log n)
+  // O(log n) balanced tree, O(n) eng yomon holatda
   findMax(): number | null {
     let current = this.root;
 
@@ -81,7 +81,7 @@ class BTS {
     return null;
   }
 
-  // O(n)
+  // O(n) — har bir node bir marta ko'riladi.
   height(): number {
     const measure = (node: TreeNode<number> | null): number => {
       if (node === null) return -1;
@@ -95,14 +95,17 @@ class BTS {
   }
 }
 
-const x = new BTS();
+const x = new BST();
 x.insert(28);
 x.insert(15);
 x.insert(60);
 x.insert(3);
 x.insert(41);
 x.insert(77);
-const r = x.findMin();
-const r2 = x.findMax();
-const h = x.height();
-console.log(r, r2, h);
+console.log(x.findMin(), x.findMax(), x.height()); // 3 77 2
+console.log(x.search(41), x.search(42)); // true false
+
+// Skewed tree — bir tomonga cho'zilgan daraxt linked list'ga aylanadi va search O(log n) emas, O(n) bo'ladi.
+const skewed = new BST();
+[1, 2, 3, 4, 5].forEach((n) => skewed.insert(n));
+console.log(skewed.height()); // 4 — muvozanatli bo'lganda 2 bo'lardi

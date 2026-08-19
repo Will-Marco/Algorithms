@@ -1,6 +1,6 @@
 // O(n)
 function sumTo(n: number): number {
-  if (n <= 1) return 1;
+  if (n <= 0) return 0; // 0 va manfiy sonlar uchun ham to'g'ri base case
   return n + sumTo(n - 1);
 }
 
@@ -13,7 +13,7 @@ function power(base: number, exp: number): number {
 }
 // console.log(power(2, 4));
 
-// O(n)
+// O(n²)
 function reverseString(str: string): string {
   if (str.length <= 1) return str;
 
@@ -25,9 +25,9 @@ function reverseString(str: string): string {
 
 // console.log(reverseString('hello'));
 
-// O(n)
+// O(n²)
 const countDown = (n: number): number[] =>
-  n === 1 ? [n] : [n, ...countDown(n - 1)];
+  n <= 0 ? [] : [n, ...countDown(n - 1)];
 
 // console.log(countDown(5));
 
