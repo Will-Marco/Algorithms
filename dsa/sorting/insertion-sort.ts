@@ -1,16 +1,14 @@
 function insertionSort(arr: number[]): number[] {
-  for (let pass = 0; pass < arr.length; pass++) {
-    let current = arr[pass];
+  for (let pass = 1; pass < arr.length; pass++) {
+    const key = arr[pass];
 
-    let i = pass - 1;
-    while (i >= 0 && arr[i] > current) {
-      arr[i + 1] = arr[i];
-      i--;
+    let j = pass - 1;
+    while (j >= 0 && key < arr[j]) {
+      arr[j + 1] = arr[j];
+      j--;
     }
-
-    arr[i + 1] = current;
+    arr[j + 1] = key;
   }
-
   return arr;
 }
 
